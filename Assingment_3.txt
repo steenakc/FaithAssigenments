@@ -1,0 +1,108 @@
+#Assignment:3
+#write a function to check wether input strig is palindrome
+'''
+def reverse(x):
+    z=x[::-1]
+    if z==x:
+         print("The string is a palindrome")
+    else:
+        print("The string is not a palindrome")
+    return
+
+x=input("Enter a string :")
+reverse(x)
+'''
+'''
+def reverse(x):
+  z=y.reverse()
+  if (z==y):
+       print("its a palindrom")
+  else:
+       print("its not palindrom")
+
+
+x=input("Enter a string:")
+y=list(x)
+print(y)
+reverse(x)
+'''
+'''
+#2write a progrm to find the factorial of  a number
+def factorial(n):
+    if n==1:
+        return 1
+    else:
+        return(n*(factorial(n-1)))
+
+n=int(input("Enter a number:"))
+print(factorial(n),"is the factorial value of",n)
+factorial(n)
+'''
+'''
+#3Write a program to find the fibnocci series of a number
+def fibnocci(n):
+    fib=[]
+    if n<2:
+        fib.append(1)
+        return fibnocci()
+    else:
+        fibnocci(n-2)+fibnocci(n-1)
+        return fib.append()
+
+
+
+n=int(input("Enter a number :"))
+print(fib)
+fibnocci(n)
+'''
+'''
+# Function for nth Fibonacci number
+def Fibonacci(n):
+
+	# Check if input is 0 then it will
+	# print incorrect input
+	if n < 0:
+		print("Incorrect input")
+
+	# Check if n is 0
+	# then it will return 0
+	elif n == 0:
+		return 0
+
+	# Check if n is 1,2
+	# it will return 1
+	elif n == 1 or n == 2:
+		return 1
+
+	else:
+		return Fibonacci(n-1) + Fibonacci(n-2)
+
+# Driver Program
+print(Fibonacci(9))
+'''
+'''
+# Write a program to print fibonacci series upto n terms in python
+def fibnocci(n):
+ if n1==0:
+	 print("Fibnocci series :",n1)
+ elif n2==1:
+	 print("Fibnocci series:",n1,n2,end=" ")
+ else:
+     for i in range(2,n):
+      n3 = n1 + n2
+      n1 = n2
+      n2 = n3
+      print(n3, end=" ")
+	return
+'''
+def fib(n):
+    L=[0]# initilize first element with 0
+    a,b=0,1 #a=0 b=1
+    for i in range (n):
+        a,b=b,a+b #a=b b=a+b
+        L.append(a)
+    return L
+print(fib(int(input("Enter the number:"))))
+
+
+
