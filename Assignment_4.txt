@@ -1,0 +1,195 @@
+#ASSIGNMENT -4
+#1Write a procedure that solves quadratic equations using the quadratic formula: 
+It should take as arguments three numbers a, b, and c. It should print error messages if a is zero, or 
+if the roots are complex. Otherwise it should print the two roots.
+
+
+'''
+def findRoot(a,b,c):
+    if a==0:
+        return ("Error")
+    elif (b**2)<(4*a*c):
+        return ("Roots are complex")
+
+    elif -b+((b**2)-(4*a*c))**0.5/2*a :
+        return
+    elif -b+((b**2)+(4*a*c))**0.5/2*a :
+        return
+
+
+
+'''
+'''
+
+def findRoot (a,b,c):
+  if a == 0:
+    print("Error")
+  elif (b**2)<(4*a*c):
+    print("Roots are complex")
+  else:
+    x1 = ((-b)+((b**2)-(4*a*c))**0.5)/2*a
+    print (x1,"x1")
+    x2 = ((-b)-((b**2)-(4*a*c))**0.5)/2*a
+    print (x2,"x2")
+
+
+a=int(input("Enter a number:"))
+b=int(input("Enter a number:"))
+c=int(input("Enter a number:"))
+
+findRoot(a,b,c,)
+'''
+#2Write a program that reads in a string on the command line and returns a table 
+of the frequency of occurrence of each word. Ignore the case. A sample run of the program would look this
+Enter some letters >>> The cat in the hat The - 2
+Cat - 1
+In - 1
+Hat - 1
+
+
+'''
+myText=input("Enetr a string")
+x=myText.split()
+
+frequency={}
+for i in x:
+  if i in frequency:
+    frequency[i]+=1
+
+  else:
+    frequency[i]=1
+print(frequency)
+'''
+
+#3
+Write a program that accepts a sentence and calculate the number of letters and digits. 
+Suppose the following input is supplied to the program: hello world! 123
+Then, the output should be:
+
+LETTERS 10
+DIGITS 3
+
+
+'''
+x=input("Enter a sentence:")
+import  re
+y=re.findall("[1-9]",x)
+z=re.findall("[a-zA-Z]",x)
+print("number of digits=",len(y))
+print("number of letters=",len(z))
+'''
+Write a Python program to check the validity of a password input by the user.
+ The password should satisfy the following conditions:
+
+It should have at least 1 letter [a to z]
+It should have at least 1 number [0 to 9]
+It should have at least 1 capital letter [A to Z]
+It should have at least one special character [$, #, @]
+Minimum length = 6 characters
+Maximum length = 12 characters
+
+
+'''
+password=input("Enter your password")
+import re
+
+if (re.match("a-zA-Z0-9@#")):
+    print("valid")
+else:
+    print("invalid")
+
+#validPassword()
+'''
+'''
+password=input("Enter your password:")
+if 12>len(password)>6:
+      break
+import re
+elif re.findall('\d',x):
+
+  z=re.findall("[a-zA-Z]",x)
+  w=re.findall("[@#$]",x)
+
+x="helloworld123@"
+import re
+y=re.findall('\d',x)
+print(y)
+z=re.findall("[a-zA-Z]",x)
+print(z)
+w=re.findall("[@#$]",x)
+print(w)
+'''
+'''
+import re
+password=input("Enter your password:")
+if 12>len(password) and len(password)>6:
+    if re.findall('\d',password):
+        break
+    elif re.findall("[a-zA-Z]",password):
+        break
+    elif re.findall("[@#$]",password):
+        break
+
+else:
+     print("Invalid password")
+'''
+'''
+password=input("Enter your password:")
+import re
+flag=True
+while True:
+    if len(password)<6:
+        break
+    elif len(password)>12:
+        break
+    elif not re.findall('[a-z]',password):
+        break
+    elif not re.findall('[A-Z]',password):
+        break
+    elif not re.findall('\d',password):
+        break
+    elif not re.findall('[@#$]',password):
+        break
+    else:
+        print("valid password")
+        flag=False
+        break
+if flag:
+    print("invalid password!")
+'''
+
+#5
+Write a Python program that takes a string of words separated by spaces, together with a ”target” word,
+ and shows the position of the target word in the string of words.
+For example, if the string is: ‘we dont need no education we dont need no thought control no we dont’
+
+and the target word is ”dont”, then your program should return the list 1, 6, 13 because ”dont” appears 
+at the 1st, 6th, and 13th position in the string. Your program should return False if the target word doesn’t
+ appear in the string.
+	
+sentence=input("Enter a sentence:")
+listOfWords=sentence.split(' ')
+print(listOfWords)
+target=input("Enter a target word:")
+hasFoundTarget = False
+
+for index in range(0,len(listOfWords)):
+  word=listOfWords[index]
+  if word==target:
+    print(index)
+    hasFoundTarget=True
+ 
+if not (hasFoundTarget):
+  print("False")
+
+
+
+
+
+
+
+
+
+
+
+
