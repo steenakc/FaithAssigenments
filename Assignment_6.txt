@@ -1,0 +1,68 @@
+#1Write a function that take a list and returns a new list with elements that are  common to both the list .
+#The new list should not have any duplicates and input lists may be of
+#different lengths
+''''
+inputListOne=[]
+inputListTwo=[]
+for i in range(10):
+    X=input("Enter a value for first list:")
+    inputListOne.append(X)
+J=(set(inputListOne))
+for i in range(8):
+    Y=input("Enter a value for second list:")
+    inputListTwo.append(Y)
+K=(set(inputListTwo))
+result=K.intersection(J)
+print(list(result))
+'''
+
+#The multiplicative persistance of a positive integer is the number of
+# steps required to get a one digit number when separating the digits and multiplying them. for example :
+# the multiplicative persistance of 39 is 3 because
+#39-->27-->-->14-->4
+#def multiplicativePersistance(x):
+
+
+
+
+
+'''
+Num=(input("Enter the digit:"))
+print('the number is ', Num)
+# print('length ', len(Num))
+while len(Num)>1:
+    Output = int(1)
+    for index in range(0,len(Num)):
+        Output=Output*int(Num[index])
+       # print('index : ', index ,' :::' , Num[index])
+
+    print('Output : ',Output)
+    Num = str(Output)
+
+num=input("Enter a number")
+Y=list(num)
+while len(Y)>1:
+    outPut=int(1)
+    for index in range(0,len(Y)):
+        outPut=outPut*int(Y[index])
+    Y=list(str(outPut))
+    print(outPut)
+'''
+given an positive integerr n, if you apply the following rukes iteratively, you will eventually get a 1. it is called collatz sequence
+n---> n/2 (if n is even)			
+n---> 3*n+1 (if n is odd)
+for example 13->40->20->10->5->16->8->4->2->1
+write a function to genrate the collatz sequence. now find the starting number less than 1 million which will produce the longest chain
+
+
+Num=(int(input("Enter a positive number:")))
+print("you have entered:",Num)
+while Num > 1:
+    if Num %2==0:
+        Num=Num/2
+    else:
+        Num=(3*Num)+1
+    print(Num)
+
+
+
