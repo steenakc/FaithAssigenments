@@ -1,0 +1,206 @@
+''''
+#1.Write a function named sort_odd_even() that will  sort a list of numbers with the odd
+# numbers coming first and the even numbers coming second. You can use the list.sort function.
+def sort_odd_even():
+ S=[]
+ E=[]
+ for i in range(len(L)):
+    if L[i]%2==0:
+        E.append (L[i])
+        E.sort()
+    else:
+        S.append(L[i])
+        S.sort()
+ print(E+S)
+
+
+L=[]
+for i in range (10):
+ L.append(int(input("Enter a number:")))
+print(L)
+sort_odd_even()
+
+#2 By using list comprehension, write a program to
+# print the list after removing the value 24 in [12,24,35,24,88,120,155].
+L=[12,24,35,24,88,120,155]
+print([x for x in L if x != 24])
+
+
+for i in L:
+   if i==24:
+     L.remove(24)
+print(L)
+
+
+
+l=[12,24,35,24,88,120,155]
+k=[]
+for i in l:
+    if i==24:
+        continue
+    k.append(i)
+print(k)
+'''
+#3. Use a list comprehension to square each odd number in a list.
+# The list is input by a sequence of comma-separated numbers
+'''
+L=[]
+for i in range (6):
+ L.append(int(input("Enter a number:")))
+print(L)
+S=[]
+for i in L:
+ if i%2!=0:
+    squ=i**2
+    S.append(squ)
+print(S)
+'''
+#5Use filter() to eliminate all words that are shorter than 4 letters from a list of words.
+
+# function that filters words shorter than 4 litters from a list of words
+'''
+def remove_words(list1):
+    result =list(filter(lambda s :len(s)>3,list1))
+    print(result)
+list1=['hello','world','iam']
+remove_words(list1)
+'''
+'''
+#another method
+l=[x for x in input('Enter the words').split(' ')]
+def shorter(y):
+    if len(y)>3:
+        return True
+    return False
+x=filter(shorter,l)
+print(list(x))
+4.Using list comprehension, return the number of even integers in the given array.
+
+a=[1,2,8,5,46,45,21,2]
+b=[i for i in a if i%2==0]
+print(b)
+
+5.Use filter() to eliminate all words that are shorter than 4 letters from a list of words.
+
+
+def remove_words(list1):
+    result=list(filter(lambda s :len(s)>3,list1))
+    print(result)
+list1=['hello','world','iam']
+remove_words(list1)
+#or
+l=[x for x in input("enter the words").split(" ")]
+def shorter(y):
+    if len(y)>3: #y for iteration through list
+        return True
+    return False
+x=filter(shorter,l)
+print(list(x))
+
+
+
+6.Write a list comprehension statement to convert a list of Fahrenheit temperatures to Celsius
+
+x=[100,32,45,18,40]
+a=[(i-32)*5/9 for i in x]
+print(a)
+
+
+7.Use map and a lambda function to convert a list of Fahrenheit temperatures to a list of Celsius temperatures
+
+l=[32,45,100,89,47]
+f=lambda t:(t-32)*5/9
+c=list(map(lambda t:(t-32)*5/9,l))
+print(c)
+
+
+8. Input two lists and convert the two list to dictionary.
+
+a=[]
+b=[]
+c=int(input("enter the total input elements:"))
+for i in range(c):
+    d=input("input for list 1: ")
+    a.append(d)
+for i in range(c):
+    e=input("input for list 2 : ")
+    b.append(e)
+print(a)
+print(b)
+x=dict(zip(a,b))
+print(x)
+#or
+y={k:v for k,v in zip(a,b)}
+print(y)
+
+
+
+
+
+'''
+
+
+
+'''
+#9
+import random
+playerWinCount=0
+computerWinCount=0
+tieCount=0
+for playcount in range(1,11):
+    playerInput=input("Enetr R for Rock,P for Paper.S for Sicor:")
+    randomNumber= random.randint(0, 2)
+    computerInput=(['R','S','P'])[randomNumber]
+    print('you have entered : ',playerInput)
+    print('computerInput : ',computerInput)
+
+    if((playerInput=='R' and computerInput=='R') or (playerInput=='S' and computerInput=='S') or (playerInput=='P' and computerInput=='P')):
+       print( "this game is tie")
+       tieCount=tieCount+1
+    elif ((playerInput == 'R' and computerInput == 'S') or
+            (playerInput == 'S' and computerInput == 'P') or (playerInput == 'P' and computerInput == 'R')):
+        playerWinCount=playerWinCount+1
+        print("You won")
+    else:
+        computerWinCount=computerWinCount+1
+        print("computer won")
+print(playerWinCount," is player win count and " ,computerWinCount," is computer win count. ",tieCount," games tie")
+'''
+#10
+
+'''
+numberEnterd=input("Enter a sequence of numbers seperated by comma:")
+print(numberEnterd)
+listOfNumbers=numberEnterd.split(",")
+print(listOfNumbers)
+print("tuple of numbers=",tuple(listOfNumbers))
+
+
+#11
+sentence=input("Enter a sentence:")
+print("You have enterd:",sentence)
+listOFWords=sentence.split(',')
+print(listOFWords)
+sortedWords=sorted(listOFWords)
+print(sortedWords)
+resultString=','.join(sortedWords)
+print(resultString)
+
+#12. Write a program which accepts a sequence of comma separated 4 digit binary numbers as
+# its input and then check whether they are divisible by 5 or not. The numbers that are divisible
+# by 5 are to be printed in a comma separated sequence.
+#Example:
+#0100,0011,1010,1001
+#Then the output should be:
+#1010---->0*2^0+1*2^1+0*2^2+1+1*2^3=0+2+0+8=10
+
+a=input("Enter the 4 digit binary numbers with,separated")
+value=[]
+items =a.split(",")#[x for x in a.split(",")]
+for p in items:
+    decimal=int(p,2) #its the formula for decimal conversion
+    print(decimal)
+    if not decimal%5: #if decimal%5==0:
+        value.append(p)
+print(','.join(value))
+'''
