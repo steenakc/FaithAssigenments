@@ -1,0 +1,102 @@
+---------Assignment-1------------
+--------1 to 6 th-----------------
+CREATE TABLE Department(
+  deptno int primary key,
+  deptName varchar(20) unique,
+  floor int,
+  Location varchar(20)
+ );
+desc Department
+
+CREATE TABLE Employee(
+  Empno int primary key,
+  managerid int,
+  firstname varchar(20) not null,
+  lastname varchar(20),
+  userID varchar(20),
+  joiningDate date,
+  designation varchar(25),
+  commision int,
+  salary number(6,2),
+  deptno int,
+  CONSTRAINT DE_01 FOREIGN  KEY(deptno) REFERENCES Department(deptno)
+  ON DELETE CASCADE);
+desc Employee
+
+alter table Employee add HRA number(5,2)
+alter table Employee add PF number(5,2) check( PF <5000)
+
+---------------------7 th to 11th---------------------
+
+CREATE TABLE customer(
+  custno int primary key,
+  custname varchar(20),
+  address varchar(40));
+
+desc customer
+
+CREATE  TABLE  Orders(
+ orderno int  primary key,
+ orderDate  date,
+ custno  int,
+ CONSTRAINT CO_1 FOREIGN KEY(custno) REFERENCES customer(custno));
+
+desc orders
+
+CREATE TABLE OrdertItem(
+  itemid int primary key,
+  itemname varchar(20),
+  quantity int,
+  orderno,
+  CONSTRAINT OO_1 FOREIGN KEY(orderno) REFERENCES orders (orderno));
+
+desc Ordertitem
+
+alter table customer modify address varchar(100)
+
+----------12 to 15-------------------
+
+CREATE TABLE Course(
+  courseid varchar(5) primary key,
+  streamid varchar(20),
+  titile varchar(40),
+  description varchar(200),
+   fees  number);
+desc course
+drop table course
+
+
+CREATE TABLE Course(
+  courseid varchar(5) ,
+  deptID varchar(5),
+  constraint dc_1 primary key (courseid,deptid),
+  streamid varchar(20),
+  titile varchar(40),
+  description varchar(200),
+   fees  number);
+desc course
+
+CREATE TABLE BATCH(
+  batchid varchar(30),
+ courseid varchar(25),
+  batchname char(1)
+ );
+desc batch
+
+CREATE TABLE Student(
+  studid varchar (20) primary key,
+  lastname varchar(25),
+  middilename varchar(30),
+  firstname varchar(20),
+  dob date,
+  address varchar(50),
+  city varchar(20),
+  state varchar(2),
+  zipcode varchar(9),
+  telephone varchar(10),
+  fax varchar(10),
+  email varchar(30),
+  grade  char(1) ,
+  check (grade IN ('A','A+','A-','B','B+','B-','C','C+','C-','D','D+','D-','F','F+','F-'))
+);
+desc student
