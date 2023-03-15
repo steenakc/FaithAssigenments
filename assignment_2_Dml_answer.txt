@@ -1,0 +1,188 @@
+------------Assignemnts-dml-------------
+1.1.The programmer needs the copy of the Employee table with all the data. Do this based on the following criteria: Emp2 table based on structure of Employee table. Include only empno, ename and deptno columns. Name columns as id, LastName, deptid.
+Create table Employee(
+  emp_no int,
+  emp_name varchar(20),
+  deptno int);
+
+drop table Employee
+desc Employee
+
+INSERT ALL
+INTO Employee(emp_no,emp_name,deptno)
+values(1,'stee',45)
+INTO Employee(emp_no,emp_name,deptno)
+values(2,'sreeen',34)
+INTO Employee(emp_no,emp_name,deptno)
+values(3,'lee',67)
+select * from dual;
+select *from Employee
+
+create table Emp_2(
+  id int,
+  lastName varchar(20),
+  depid int);
+insert into Emp_2
+select * from Employee ;
+select * from Emp_2
+
+2. Try adding data to the Employee table. What do you notice. What are the reasons?
+INSERT INTO Employee (emp_no,emp_name,deptno)
+values(5,'romy',56);
+
+INSERT INTO Employee (emp_no,emp_name,deptno)
+values(7,'chacko',5);
+select * from Employee
+INSERT INTO Employee (emp_no,emp_name,deptno)
+values(4,'Jomy',10);
+select * from Employee
+
+
+-----when i added a new row  it come in the first index positions ...if its a few numbers of data it will be printed in the top of the last datas printed.
+
+
+3.Add data to the department table (Deptno: 10, Accounts, 2, Trivandrum). Now try adding an employee to department number 10 in the employee table. Why is it that there is no error this time?
+create table department(
+deptno int,
+dep_name varchar(20),
+depid int,
+location varchar(20)
+);
+drop table department
+insert into department(deptno,dep_name,depid,location)
+values(10,'accounts',2,'Trivandrum');
+select * from department
+
+
+
+
+
+5.Remove the record of a customer form the customer table
+
+create table customer1(
+ custid int,
+custname varchar(20),
+ location varchar(20),
+ item varchar(20));
+desc customer1;
+INSERT ALL
+into customer1(custid,custname,location,item)
+values(1,'stee','tsr','book')
+into customer1(custid,custname,location,item)
+values(2,'leena','tvm','book1')
+into customer1(custid,custname,location,item)
+values(3,'gher','ekm','fone')
+into customer1(custid,custname,location,item)
+values(4,'chacko','plkd','lap')
+select * from dual;
+SELECT * FROM customer1
+delete from customer1 where custid=1;
+--------------------------------------------------------------------------
+6.Insert only empno, name into Employee table.
+
+insert into Employee(emp_no,emp_name)
+values(6,'PREMY');
+select * from Employee 
+delete  from Employee where emp_no=3;
+------------------------------------------------------------------------------
+7.Change address of a particular customer to ‘New Delhi’.
+  
+update customer1 set location ='New Delhi' where custid=4;
+select * from customer1
+------------------------------------------------------------------------------------
+
+8.Remove details of employees working in a particular department and whose salary is greater than 5000.
+
+select * from Employee
+alter table Employee add salary number;
+update Employee set salary= 7000 where emp_no=5;
+update Employee set salary= 8000 where emp_no=7;
+update Employee set salary= 900 where emp_no=1;
+update Employee set salary= 10000 where emp_no=2;
+ update Employee set salary= 9000 where emp_no=4;
+update Employee set salary= 7000 where emp_no=6;
+update Employee set deptno=5 where emp_no=6;
+
+-----------------------------------------------------------------------
+9.Change deptno and name of a particular employee.
+update Employee set deptno=2 where emp_no=5;
+
+update Employee set emp_name='unni' where emp_no=5;
+/*update Employee set emp_name='pappu' , deptno=45 where emp_no=1;*/<<<<<<<----------and apply only in side  where conditions ,outside the where condition use coma-------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+10.Change the email of the student in Student table who does not have a email to ‘NA’.
+
+11.Remove students whose age is greater than 20.
+
+12.Remove students who do not have telephone and email.
+
+13.Remove students whose birthday falls on 5th June.
+
+14.Change students firstname to XXX, dob to current date whose first name contains ‘A’ in the fourth position.
+
+15.Remove students whose state ends with letter ‘a’.
+
+16.Change student’s lastname to Jan whose birthday falls on January.
+
+17.Remove students whose state starts with T
+
+create table student(
+stud_id int,
+stud_first_name varchar(30),
+stud_last_name varchar(30),
+stud_age int,
+telephon_no number(10),
+email varchar(30),
+dob date,
+state varchar(30)
+);
+drop table student;
+
+insert all
+into student(stud_id,stud_first_name,stud_last_name,stud_Age,telephon_no,email,dob,state)
+values(1,'amal','chacko',23,123467890,'amal@gmail.com', '01/01/2023','keralan')
+
+into student(stud_id,stud_first_name,stud_last_name,stud_Age,telephon_no,email,dob,state)
+values(2,'stee','chacko',24,1235567890,'steel@gmail.com', '01/02/2023','keralan')
+
+
+
+select * from dual;
+select * from student;
+insert all
+into student(stud_id,stud_first_name,stud_last_name,stud_Age,telephon_no,dob,state)
+values(3,'leena','chacko',42,1235567890,'01/02/2023','keralan')
+into student(stud_id,stud_first_name,stud_last_name,stud_Age,dob,state)
+values(4,'chacko','kk',54,'01/02/2023','keralan')
+into student(stud_id,stud_first_name,stud_last_name,stud_Age,telephon_no,email,dob,state)
+values(5,'Romy','chacko',42,1235567890,'romy@gmail.com' ,'05/06/2023','keralan')
+into student(stud_id,stud_first_name,stud_last_name,stud_Age,telephon_no,email,dob,state)
+values(6,'meean','chacko',23,123467890,'amal@gmail.com', '01/01/2023','kerala')
+into student(stud_id,stud_first_name,stud_last_name,stud_Age,telephon_no,email,dob,state)
+values(7,'Jomy','chacko',23,123467890,'amal@gmail.com', '01/01/2023','tamilnadu')
+select * from dual;
+delete  from student where stud_id=3;
+
+update student set email='NA' where stud_id=3; ----------10th question dbt------------
+insert all
+into student(stud_id,stud_first_name,stud_last_name,stud_Age,telephon_no,email,dob,state)
+values(8,'premy','chacko',67,1235567890,'premy@gmal.com','01/02/2023','keralan')
+select * from dual;
+
+delete  from student where stud_age>54;------------------11th question-----------------
+delete from student where email is null and telephon_no is null;----------------12th question--------------------------
+select * from emp;
+select * from dept;
+delete from student where dob like'05/06%';---------------13th question------------------
+select * from student;
+insert into student values(1001,'vijin','s',null,null,null,'14-04-1996',null)
+14.Change students firstname to XXX, dob to current date whose first name contains ‘A’ in the fourth position.
+update student set stud_first_name='xxx',  dob = CURRENT_DATE where stud_first_name Like '___a%'--------------14th-------------------
+15.delete from student where stud_first_name like 'a%' -------------15th--------------------
+16.Change student’s lastname to Jan whose birthday falls on January.
+update student set stud_last_name='MAR' where dob like '11%'
+17.17.Remove students whose state starts with T
+DELETE FROM STUDENT WHERE STATE like't%'
+select * from student where state not like 't%';
