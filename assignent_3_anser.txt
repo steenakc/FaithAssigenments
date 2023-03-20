@@ -1,0 +1,203 @@
+a. Write a query to load rows into My_Employee table (employees id, firstname, lastname, salary). Concatenate first letter of firstname and first seven characters of lastname to produce userid.
+create table My_Employee (
+   employees_id int,
+   firstname varchar(20),
+   lastname varchar(20), 
+   salary number(10)
+);
+drop table My_Employee
+insert all
+into My_Employee(employees_id,firstname,lastname,salary)
+values(1,'steena','chackokk',234)
+into My_Employee(employees_id,firstname,lastname,salary)
+values(2,'amal','chalspaul',367)
+into My_Employee(employees_id,firstname,lastname,salary)
+values(3,'leena','chackofgr',4987)
+select * from dual;
+select * from My_Employee;
+select concat(substr(firstname,1,1),substr(lastname,1,7)) as userid from My_Employee ;
+
+ b.List the minimum salary of various categories of employees in various departments having minimum salary greater than 1000.
+
+select * from Employee
+CREATE TABLE Employee(
+  Empno int primary key,
+  managerid int,
+  firstname varchar(20) not null,
+  lastname varchar(20),
+  userID varchar(20),
+  joiningDate date,
+  designation varchar(25),
+  commision int,
+  salary number(6,2));
+  
+desc Employee
+insert all
+into Employee (Empno,managerid,firstname,lastname,userID,joiningDate,designation,commision,salary)
+values(1,23,'stee','chack','1','01/06/2021','doct',234,2340.0)
+into Employee (Empno,managerid,firstname,lastname,userID,joiningDate,designation,commision,salary)
+values(2,24,'lee','chack','2','01/07/2021','nurse',200,1050.0)
+into Employee (Empno,managerid,firstname,lastname,userID,joiningDate,designation,commision,salary)
+values(3,20,'amal','chack','9','08/06/2021','teach',276,4000.0)
+select * from dual;
+insert all
+into Employee (Empno,managerid,firstname,lastname,userID,joiningDate,designation,commision,salary)
+values(4,27,'Romy','chack','10','03/06/2021','teach',277,800.0)
+select * from dual;
+
+select * from Employee;
+select min(salary)from Employee group by designation having min(salary)>1000; 
+
+c.Display the name, with first letter capitalized and all other letters as lower case and length of their name for all employees whose name starts with J or M.
+
+select * from my_Employee 
+
+insert all
+into My_Employee(employees_id,firstname,lastname,salary)
+values(6,'meena','paulkkok',239)
+into My_Employee(employees_id,firstname,lastname,salary)
+values(7,'jomy','chalspaul',360)
+into My_Employee(employees_id,firstname,lastname,salary)
+values(8,'seena','chackofgr',4980)
+into My_Employee(employees_id,firstname,lastname,salary)
+values(8,'sEeNa','chackofgr',4980)
+select * from dual;
+insert all
+into My_Employee(employees_id,firstname,lastname,salary)
+values(8,'jEeNa','chackofgr',4980)
+select * from dual;
+
+select initcap(lower(firstname)) as name, length(firstname) as lengthOfName from My_Employee where firstname like 'j%' or firstname like 'm%';
+***************************************************************************************************************************************************************
+ d. Find the position of ‘A’ in the names of all employees.
+  select * from My_Employee 
+select firstname, instr(lower(firstname),'a') as firstIndexOfA from My_Employee ;
+
+***************************************************************************************************************************************************
+
+e..Display minimum, maximum, sum and average salary for each job.
+
+
+
+select * from Employee
+insert all
+into Employee (Empno,managerid,firstname,lastname,userID,joiningDate,designation,commision,salary)
+values(5,23,'stee','chack','1','01/06/2021','doct',234,5670.0)
+into Employee (Empno,managerid,firstname,lastname,userID,joiningDate,designation,commision,salary)
+values(6,24,'lee','chack','2','01/07/2021','nurse',200,2500.0)
+into Employee (Empno,managerid,firstname,lastname,userID,joiningDate,designation,commision,salary)
+values(7,20,'amal','chack','9','08/06/2021','teach',276,8000.0)
+select * from dual;
+insert all
+into Employee (Empno,managerid,firstname,lastname,userID,joiningDate,designation,commision,salary)
+values(11,30,'stee','chack','1','01/06/2021','doct',null,5670.0)
+into Employee (Empno,managerid,firstname,lastname,userID,joiningDate,designation,commision,salary)
+values(15,39,'stee','chack','1','01/06/2021','doct',null,5670.0)
+select * from dual;
+insert all
+into Employee (Empno,managerid,firstname,lastname,userID,joiningDate,designation,commision,salary)
+values(19,30,'steenaromy','chack','1','01/06/2021','doct',null,5670.0)
+select * from dual;
+insert all
+into Employee (Empno,managerid,firstname,lastname,userID,joiningDate,designation,commision,salary)
+values(30,null,'steenaromy','chack','1','01/06/2021','doct',null,5670.0)
+select * from dual;
+drop table Employee
+select designation,max(salary) from Employee group by designation
+select designation,min(salary) from Employee group by designation
+select designation,sum(salary) from Employee group by designation
+select designation,avg(salary) from Employee group by designation
+
+******************************************************************************************************************************************************
+f.Display employee number, name, salary, salary increased by 15% 
+rounded to to 2 decimal places.Label column New Salary.
+
+
+select empno,(firstname || '' ||lastname) as name,salary,round(salary+(0.15*salary),2)  as New_Salary from Employee;
+
+****************************************************************************************************************************************************************
+
+g.Create a query to display name and salary for all employees.Format salary to be 15 characters long left padded with $.
+
+select (firstname || ''||lastname) as name,Lpad(salary,15,'$')  as salary from Employee
+
+************************************************************************************************************************************************
+h..Create a query that will display employee name and commission amount. If employee does not earn commission, put ‘No Commission’.
+ select (firstname || ''|| lastname)) as employee_name ,nvl (to_char(commision),"no commision" ) commision from Employee --------------------------------dbt-----------------------
+
+**********************************************************************************************************************************************************************
+i. Display all information from student table where student firstname is only 10 characters.
+ select * from Employee where (length(firstname)=10 )
+
+************************************************************************************************************************************************************************
+j..Display manager number and salary of lowest paid employee for each manager. Exclude anyone whose manager is not known. Exclude any group where the minimum salary is less than $1000. Sort output in descending order of salary.
+select * from Employee
+select managerid  ,  min(salary)from Employee group by managerid  having  min(salary)>1000 and managerid is  not null order by min(salary) desc ;
+
+insert all
+into Employee (Empno,managerid,firstname,lastname,userID,joiningDate,designation,commision,salary)
+values(11,30,'stee','chack','1','01/06/2021','doct',null,5670.0)
+into Employee (Empno,managerid,firstname,lastname,userID,joiningDate,designation,commision,salary)
+values(15,39,'stee','chack','1','01/06/2021','doct',null,5670.0)
+insert 
+into Employee values(50,39,'stee','chack','1','01/06/2021','doct',null,567.0)
+select * from dual;
+insert all
+into Employee (Empno,managerid,firstname,lastname,userID,joiningDate,designation,commision,salary)
+values(19,30,'steenaromy','chack','1','01/06/2021','doct',null,5670.0)
+select * from dual;
+insert all
+into Employee (Empno,managerid,firstname,lastname,userID,joiningDate,designation,commision,salary)
+values(30,null,'steenaromy','chack','1','01/06/2021','doct',null,5670.0)
+select * from dual;
+select * from Employee
+CREATE TABLE Employee(
+  Empno int primary key,
+  managerid int,
+  firstname varchar(20) not null,
+  lastname varchar(20),
+  userID varchar(20),
+  joiningDate date,
+  designation varchar(25),
+  commision int,
+  salary number(6,2));
+  
+desc Employee
+insert all
+into Employee (Empno,managerid,firstname,lastname,userID,joiningDate,designation,commision,salary)
+values(6,24,'lee','chack','2','01/07/2021','nurse',200,2500.0)
+into Employee (Empno,managerid,firstname,lastname,userID,joiningDate,designation,commision,salary)
+values(7,20,'amal','chack','9','08/06/2021','teach',276,8000.0)
+select * from dual;
+insert all
+into Employee (Empno,managerid,firstname,lastname,userID,joiningDate,designation,commision,salary)
+values(4,27,'Romy','chack','10','03/06/2021','teach',277,800.0)
+select * from dual;
+insert all
+into Employee (Empno,managerid,firstname,lastname,userID,joiningDate,designation,commision,salary)
+values(36,null,'steenaromy','chack','1','01/06/2021','nurse',null,5670.0)
+into Employee (Empno,managerid,firstname,lastname,userID,joiningDate,designation,commision,salary)
+values(10,20,'amal','chack','9','08/06/2021','nurse',276,6000.0)
+select * from dual;
+select * from Employee;
+****************************************************************************************************************************************
+k..Display employee name, hiredate and salary review date which is the first Monday after 6 months of service. Label column Review. Format dates to appear in format similar to ‘Sunday, the Seventh of September, 1981’.
+
+select firstname,joiningdate,to_char(next_day(add_months(joiningdate,6),'monday'),'Day, ddspth "of " Month YYYY') as salaryreviewdate from employee
+
+l.For each employee display the employee name and calculated number of months between today and date employee was hired. Label the column Months_Worked. Order your result by number of months employed.Round number of month up to closest whole number
+
+select round(months_between(sysdate,joiningdate)) as months_worked from employee order by round(months_between(sysdate,joiningdate)) 
+
+m.Report needed: Name of Employee and Bonus. The salary should be rounded to the nearest thousand before calculating the Bonus.
+Bonus = 30% of annual incomeEg: If salary is 23436; round it as 23000 before calculating the Bonus 30 % of (23000 * 12)
+
+SELECT 
+    firstname,
+    ROUND((salary/1000),0)*1000 as rounded_salary,
+    ROUND((ROUND((salary/1000),0)*1000)*12*0.3, 2) AS Bonus
+FROM 
+    employee
+
+
+
