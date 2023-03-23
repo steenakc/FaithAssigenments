@@ -1,0 +1,227 @@
+
+/*Report needed: Names of employees who are manager. Hint: The names of people who have their own employeeID as the managerID 
+   You can set the status of your assignment here.
+*/
+select * from employee_1
+select t.empid as employee_id,t.managerid as manager_id, t.name as employee_name,m.name as manager_name from Employee_1 t 
+inner join employee_1 m on m.empId=t.managerId;
+
+2.Report needed: Names of employees who are manager.
+   Hint: The names of people who have their own employeeID as the managerID
+   You can set the status of your assignment here.
+
+select distinct t.managerid as manager_id, m.name as manager_name from Employee_1 t 
+inner join employee_1 m on m.empId=t.managerId order by t.managerId;
+
+select * from Employee_1 t 
+inner join employee_1 m on m.empId=t.managerId ;
+
+
+3.  
+List the name of all employees along with their department name and Annual Income.
+   For each row get the output in the form ‘Every Year Mark of Accounts department earns amount 450000’. This output has to come under a heading ‘Annual income Report’.
+   You can set the status of your assignment here.
+
+select * from department_
+select  t.name as Employee_name, d.deptname as department_name, t.salary as monthly_income, t.salary*12 as annual_income from employee_1 t inner join department_ d on t.deptno=d.deptno;
+
+
+4.
+
+Report needed: Names of departments and names of employees. Names of departments in ascending order. 
+   Within the same department, employee name should be in the descending order
+
+
+select d.deptname as department,t.name as employee_name from employee_1 t inner join department_ d on t.deptno=d.deptno order by d.deptname asc, t.name desc;
+
+
+
+5.
+
+Find out employee name and departmentname of employees who either works in a Toy or Shoe department.
+select * from department_
+insert all 
+into department_(deptno,deptname,location,depthead)
+values(5,'Toy','India','Modi')
+into department_(deptno,deptname,location,depthead)
+values(6,'shoe','south_India','Romy')
+select * from dual;
+select * from Employee_1
+insert all 
+into Employee_1(empid,name,gender,designation,salary,deptno,managerid)
+values(11,'stee','female','tutor',98760,5,3)
+into Employee_1(empid,name,gender,designation,salary,deptno,managerid)
+values(12,'steerom','male','teacher',98754,6,3)
+select * from dual;
+select e.name as employee_name, d.deptname as department_name from employee_1 e inner join department_ d on e.deptno=d.deptno where d.deptname in ('Toy','shoe');
+
+8.
+
+Report needed: Name concatenated with department, separated by comma and space and name column Employee and department.
+
+select concat(concat(e.name,', '),d.deptname) as Employee_and_department from Employee_1 e inner join department_ d on e.deptno = d.deptno;
+
+
+9.
+
+Write a query to display name, job, department number and department name for all employees who work in DALLAS.
+
+select * from Employee_1
+select * from department_
+insert all 
+into department_(deptno,deptname,location,depthead)
+values(7,'arch','dallas','pinarayi')
+select * from dual;
+
+insert all 
+into Employee_1(empid,name,gender,designation,salary,deptno,managerid)
+values(13,'lee','female','tutor',98760,7,4)
+into Employee_1(empid,name,gender,designation,salary,deptno,managerid)
+values(14,'chacko','male','teacher',98754,7,3)
+select * from dual;
+select e.name as name, e.designation as job, d.deptname as department_name from employee_1 e inner join department_ d on e.deptno=d.deptno where location ='dallas';
+
+
+10.
+
+Display all employee name, manager number and manager name of all employees including King who have no manager.
+insert all 
+into Employee_1(empid,name,gender,designation,salary,deptno,managerid)
+values(15,'king','male','tutor',98760,7,null)
+select * from dual;
+
+select e.name as employee_name, e.managerid as manager_number, m.name as manager_name  from employee_1 e left join employee_1 m on e.managerid=m.empid where (m.empId is not null or e.name='king');
+
+select e. name as employee_name, e.managerid as manager_number, m.name as manager_name from employee_1 e inner join employee_1 m on e.managerid=m.empid
+union select e.name as employee_name, e.managerid as manager_number, null as manager_name  from employee_1 e where e.name='king';
+
+11.
+
+Display employee name, department number and all employees that work in same department as a given employee (‘Mathew’). Give each column an appropriate label.
+
+
+select t.* from employee_1 e 
+inner join employee_1 t on t.deptno=e.deptno
+where e.name='chacko';
+
+
+select * from employee_1 e where e.deptno=(select deptno from employee_1 e where e.name='chacko');
+
+
+12.
+
+Create a unique listing of all jobs that are in department 30. Include location of department 30 in the output.
+select * from employee_1
+select * from department_
+select * from employee_1 e inner join department_ d on e.deptno = d.deptno;
+select  distinct e.designation,d.location from employee_1 e inner join department_ d on e.deptno = d.deptno where d.deptno ='7';
+
+
+13.
+
+Display the name of students and the course they are doing
+
+create table student_1
+(
+studid int primary key,
+studname varchar(20),
+courseid int,
+constraint fk_cd  foreign key(courseid) references course_1(courseid)
+);
+
+insert all
+into student_1(studid,studname,courseid)
+values(1,'stee',2)
+into student_1(studid,studname,courseid)
+values(2,'leee',3)
+into student_1(studid,studname,courseid)
+values(3,'chacko',1)
+select * from dual;
+
+select * from  student_1
+drop table student_1
+
+create table course_1
+(
+courseid int primary key,
+coursename varchar(20)
+
+);
+insert all
+into course_1(courseid,coursename)
+values (1,'maths')
+into course_1(courseid,coursename)
+values (2,'chemistry')
+into course_1(courseid,coursename)
+values (3,'physics')
+select * from dual;
+select * from course_1
+
+
+select * from student_1 s inner join course_1 c on s.courseid=c.courseid;
+select studname as student_name , coursename as course from student_1 s inner join course_1 c on s.courseid=c.courseid;
+
+
+14.
+
+Display the name of student and the batch name
+
+create table batch_1(
+ batchid int primary key,
+ batch_name varchar(30));
+
+select * from batch
+ insert all
+into batch_1(batchid,batch_name)
+values(1,'first_batch')
+into batch_1(batchid,batch_name)
+values(2,'ssecond_batch')
+select * from dual;
+select * from batch_1
+
+alter table student_1
+alter table batch add index `index_1` (`b`)
+ALTER TABLE Room ADD FOREIGN KEY (Reservation_ID) REFERENCES Reservation(Reservation_ID); 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=======================================SUBQUERIES=======================================================================
+
+1.find those employees who receive a higher salary than the employee with ID 163. Return first name, last name
+
+select e.first name, e.last_name from employee e where e.salary>(select e.salary from employee e where empid=163);
+
+2.write a SQL query to find out which employees have the same designation as the employee whose ID is 169. Return first name, last name, 
+    department ID and job ID
+ select e.first_name. e.last_name, e.deptid, e.jobid, from employee e where e.designation = (select e.designation from employee e where empid=169)
+4.write a SQL query to find those employees whose salary is in the range of 1000, and 3000 (Begin and end values have included.). Return all the fields.
+
+select * from employee e where e.salary between 1000 and 3000
