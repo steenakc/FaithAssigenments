@@ -1,0 +1,98 @@
+******************************SUBQUERY***************************************
+
+1. Show the name, hiredate and job for employee with most seniority.
+
+select * from Employee_2
+create table Employee_2(
+ emp_id int primary key,
+ emp_name varchar(20),
+ hiredate date,
+job varchar(30));
+
+insert all
+into employee_2(emp_id,emp_name,hiredate,job)
+values(1,'stee','03/22/2023','se')
+into employee_2(emp_id,emp_name,hiredate,job)
+values(2,'romy','01/09/2019','sse')
+into employee_2(emp_id,emp_name,hiredate,job)
+values(3,'amal','05/22/2029','jse')
+select * from dual;
+select * from employee_2
+
+select *from ( select * from employee_2 order by hiredate asc) where rownum=1;
+
+
+
+2.Create a query to display name, hiredate and salary for all employees who have both same salary and commission as Scott. Don’t display Scott in result set.
+
+
+alter table employee_2 add (
+salary number(4),
+commission varchar(5)
+);
+update employee_2 set salary=3276 where emp_id=1
+update employee_2 set salary=3210 where emp_id=2
+update employee_2 set salary=5000 where emp_id=3
+update employee_2 set commission='scott' where emp_id=1
+update employee_2 set commission='seww' where emp_id=2
+update employee_2 set commission='stee' where emp_id=3
+select * from employee_2
+
+insert all
+into employee_2(emp_id,emp_name,hiredate,job,salary,commission)
+values (4,'chacko','03/22/2023', 'se',3276,'scott')
+into employee_2(emp_id,emp_name,hiredate,job,salary,commission)
+values (5,'cko','03/22/2023', 'se',3276,'sew')
+select * from dual;
+insert all
+into employee_2(emp_id,emp_name,hiredate,job,salary,commission)
+values (6,'scott','03/22/2023', 'se',3276,'scott')
+into employee_2(emp_id,emp_name,hiredate,job,salary,commission)
+values (7,'cko','03/22/2023', 'se',3276,'sew')
+select * from dual;
+
+
+2.Create a query to display name, hiredate and salary for all employees who have both same salary and commission as Scott. Don’t display Scott in result set.
+
+  select e.emp_name, e.hiredate, e.salary from employee_2 e where e.salary=(select e.salary from employee_2 e where emp_name='scott') and e.commission=
+(select e.commission from employee_2 e where emp_name='scott')
+
+
+select EMPNAME,HIREDATE,SALARY from employeesub where SALARY=(select SALARY from employeesub where EMPNAME='Scott') and 
+COMMISSION=(select COMMISSION from employeesub where EMPNAME='Scott')
+
+==========================2nd que dbt=====================================
+
+3.Display number, name and salary for all employees who earn more than average salary and who work in a department with any employee whose name contains a ‘T’.
+
+
+ALTER TABLE employee_2 ADD numberN int;
+
+INSERT INTO employee_2 VALUES(10,'Anoop','9/20/2018','ME',5000,null,4)
+INSERT INTO employee_2 VALUES(11,'Anotop','9/20/2018','ME',5000,null,4)
+
+
+SELECT numberN, emp_name, salary FROM employee_2 WHERE salary > (SELECT AVG(salary) FROM employee_2) AND emp_name LIKE '%t%'
+
+4.Write a query to display name, department number and salary of any employee whose department number and salary of any employee who earns a commission.
+
+SELECT * FROM employee_2
+
+
+SELECT emp_name, numberN, salary FROM employee_2 WHERE (numberN,salary) in (SELECT numberN,salary FROM employee_2 WHERE commission IS NOT null )
+INSERT INTO employee_2 VALUES(113,'Asefgjnoop','9/20/2018','ME',5000,'hjk',5)
+
+5.Create a query to display employee that earn a salary that is higher than salary of all Clerks. Sort result on salary from highest to lowest.
+
+SELECT * FROM employee_2 WHERE salary in (SELECT salary FROM employee_2 WHERE salary >ALL (SELECT salary FROM employee_2 WHERE job='se')) ORDER BY salary DESC
+
+6.List each department that has an average salary less than the company average salary. Show department number and average salar
+SELECT numberN, avg(salary) FROM employee_2 GROUP BY numberN HAVING avg(salary) <(SELECT avg(salary) FROM employee_2)
+
+7.Find out the name and department name of manager getting the highest salary.
+
+SELECT emp_name,job, salary FROM employee_2 WHERE NOT salary <ANY (SELECT salary FROM employee_2 WHERE job='se')
+
+ALTER TABLE employee_2 ADD post varchar2(10);
+
+INSERT INTO employee_2 VALUES(11,'anotop','9/20/2018','ME',5000,null,4,'se')
