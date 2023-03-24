@@ -1,0 +1,132 @@
+==============machine_test===========
+CREATE TABLE Employee(
+  Employeeid int primary key,
+  Emp_name varchar(20),
+  Phone_number number(10),
+  Email varchar(30),
+  Area_code number);
+
+CREATE TABLE Manufacturer(
+  Mfname varchar(20) primary key,
+  city varchar(20),
+  state varchar(20));
+
+CREATE TABLE Computer(
+  serial_number int primary key,
+  model number,
+  weight number,
+  Mfname varchar(20),
+  computerInUse varchar(5),
+  constraint FK_MC FOREIGN KEY  (Mfname) references Manufacturer(Mfname),
+  Employeeid int,
+  constraint FK_EC FOREIGN KEY (Employeeid) references Employee(Employeeid)
+  
+);
+
+
+insert all
+into Employee(Employeeid,Emp_name,phone_number,email,area_Code)
+values(1,'STEENA',9447333265,'steena@gmail.com',240)
+into Employee(Employeeid,Emp_name,phone_number,email,area_Code)
+values(2,'LEENA',9647333265,'leena@gmail.com',290)
+into Employee(Employeeid,Emp_name,phone_number,email,area_Code)
+values(3,'SEENA',9446533265,'seena@gmail.com',640)
+into Employee(Employeeid,Emp_name,phone_number,email,area_Code)
+values(4,'MEENA',8447333265,'meena@gmail.com',340)
+select * from dual;
+
+select * from Employee
+
+insert all
+into Manufacturer(Mfname,city,state)
+values('Lenovo','south_dakota','dakota')
+into Manufacturer(Mfname,city,state)
+values('HP','south_dakota','dakota')
+into Manufacturer(Mfname,city,state)
+values('Dell','north_dakota','dakota')
+into Manufacturer(Mfname,city,state)
+values('Mac_book','california','america')
+select * from dual;
+
+select * from Manufacturer
+
+insert all
+into Computer(serial_number,model,weight,Mfname,computerInUse,Employeeid)
+values(101,1987,45,'Lenovo','use',1)
+into Computer(serial_number,model,weight,Mfname,computerInUse,Employeeid)
+values(102,1900,55,'Dell','nouse',2)
+into Computer(serial_number,model,weight,Mfname,computerInUse,Employeeid)
+values(103,1876,40,'HP','nouse',3)
+into Computer(serial_number,model,weight,Mfname,computerInUse,Employeeid)
+values(104,1908,46,'Mac_book','use',4)
+select * from dual;
+
+insert all
+into Computer(serial_number,model,weight,Mfname,computerInUse,Employeeid)
+values(105,1980,75,'Lenovo','nouse',1)
+select * from dual;
+
+select * from computer
+
+=======================================================
+1.List the manufacturers’ names that are located in South Dakota.
+
+select Mfname as name_of_manufacturer from Manufacturer where city='south_dakota';
+
+===============================================================
+2.Calculate the average weight of the computers in use.
+
+select avg(weight) as Average_weight_of_computers from computer where computerInUse='use'
+
+====================================================================
+3.List the employee names for employees whose area_code starts with 2
+
+select emp_name as employee_name from employee where area_code like '2%';
+
+===========================================================================
+4.List the serial numbers for computers that have a weight below
+average.
+
+select serial_number from computer where weight < (select avg(weight) from computer)
+
+================================================================================
+5.List the manufacturer names of companies that do not have any computers in use. Use a subquery.
+
+select Mfname as manufacturer_name from computer where mfname in (select mfname from computer where computerinuse ='nouse');
+
+======================================================================================
+6.Create a VIEW with the list of employee name, their computer serial number, and the city that they were manufactured in. Use a join.
+
+create or replace view view_new as select e.emp_name,c.serial_number,m.city
+from employee e join computer c
+on (e.employeeid=c.employeeid)
+join manufacturer m
+on (m.mfname=c.mfname)
+
+select * from view_new 
+
+======================================================================================
+7.Write a Stored Procedure to accept EmployeeId as parameter and List the serial number, manufacturer name, model, and weight of computer that belong to the specified 
+ Employeeid.
+
+create or replace procedure user1111(a IN number)
+Is
+no number(10,2);
+name varchar(20);
+model varchar(30);
+weight int;
+Begin
+ select serial_number,mfname,model,weight into no,name,model,weight from computer where employeeid=a;
+End;
+
+DECLARE
+ id int;
+ no int;
+ mfname varchar(30);
+ model varchar(30);
+ weight varchar(30);
+BEGIN
+  id:=:ENTER_ID;
+  computer_details(id);
+END;
+
